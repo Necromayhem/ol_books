@@ -43,6 +43,7 @@
 .header {
 	height: 940px;
 	width: 1440px;
+	max-width: 100%;
 	background-image: url(/src/assets/images/header/Hero_background.png);
 	background-size: cover;
 	background-repeat: no-repeat;
