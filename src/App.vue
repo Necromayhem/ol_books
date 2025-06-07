@@ -4,7 +4,7 @@ import MainHeader from './components/MainHeader.vue'
 </script>
 
 <template>
-	<!-- <MainHeader /> -->
+	<MainHeader />
 	<HotNewBooks />
 </template>
 
