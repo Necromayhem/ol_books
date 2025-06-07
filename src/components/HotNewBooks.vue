@@ -8,23 +8,23 @@ const books = [
 		author: 'Ж. Верн',
 		genre: 'Приключения',
 		price: 168,
-		image: '/images/book1.jpg',
+		image: 'books/20_000lie.jpg',
 	},
 	{
 		id: 2,
-		title: 'Мастер и Маргарита',
-		author: 'М. Булгаков',
-		genre: 'Классика',
-		price: 210,
-		image: '/images/book2.jpg',
+		title: 'Легенды и мифы Древней Греции',
+		author: 'Н. Кун',
+		genre: 'Эпос и фольклор',
+		price: 174,
+		image: 'books/master_and_marg.jpg',
 	},
 	{
 		id: 3,
-		title: '1984',
-		author: 'Дж. Оруэлл',
-		genre: 'Антиутопия',
-		price: 195,
-		image: '/images/book3.jpg',
+		title: 'Гомер',
+		author: 'Гомер',
+		genre: 'Эпос и фольклор',
+		price: 155,
+		image: '/books/iliada.jpg',
 	},
 ]
 </script>
@@ -38,8 +38,8 @@ const books = [
 			<div class="carousel-wrapper">
 				<div class="carousel">
 					<div class="book-card" v-for="book in books" :key="book.id">
-						<img src="" alt="book.title" />
-						<h3 class="book-title">{{ book.author }}, {{ book.title }}</h3>
+						<img :src="book.image" alt="book.title" />
+						<h3 class="book-title">{{ book.author }}, "{{ book.title }}"</h3>
 						<span class="book-genre">{{ book.genre }}</span>
 						<div class="add-to-cart">
 							<div class="book-price">{{ book.price }} р.</div>
@@ -128,20 +128,82 @@ const books = [
 .book-card {
 	width: 420px;
 	height: 650px;
+	border: 3px solid black;
 
 	img {
 		width: 200px;
 		height: 301px;
 		margin-top: 25px;
+		margin: 25px auto 0px auto;
 	}
 }
 
 .book-title {
+	width: 370px;
+	height: 75px;
 	margin-top: 29px;
+	margin-left: 25px;
+	margin-right: 25px;
+	padding-right: 4px;
 	font-size: 24px;
 	letter-spacing: 0.07rem;
-	line-height: 36px;
+	line-height: 1.5;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 400;
+	text-align: center;
+}
+
+.book-genre {
+	display: flex;
+	margin: 0 auto;
+	width: 223px;
+	height: 100px;
+	font-size: 18px;
+	line-height: 1.5;
+	letter-spacing: 0.07rem;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	align-items: center;
+	justify-content: center;
+}
+
+.add-to-cart {
+	width: 367px;
+	height: 75px;
+	margin: 0 auto;
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 19px;
+}
+
+.book-price {
+	width: 174px;
+	height: 75px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	line-height: 1.5;
+	letter-spacing: 0.07rem;
+	font-family: 'rawline';
+	font-weight: 400;
+}
+
+.buy-btn {
+	width: 174px;
+	height: 75px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	line-height: 1.5;
+	letter-spacing: 0.07rem;
+	font-family: 'Forum', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+	border: 3px solid black;
+	cursor: pointer;
 }
 </style>
