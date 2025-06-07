@@ -37,7 +37,7 @@
 	</header>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @use '/src/assets/style/main.scss' as *;
 
 .header {
@@ -55,14 +55,15 @@
 
 	.container {
 		height: 100%;
+		max-width: 1300px;
 		display: flex;
 		flex-direction: column;
 		margin: 0;
 		padding-left: 70px;
-		padding-right: 74px;
 
 		.menu {
 			display: flex;
+			width: 1300px;
 			justify-content: space-between;
 			align-items: center;
 			height: 100px;
