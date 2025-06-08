@@ -1,4 +1,5 @@
 <script setup>
+import About from './components/About.vue'
 import HotNewBooks from './components/HotNewBooks.vue'
 import MainHeader from './components/MainHeader.vue'
 </script>
@@ -6,6 +7,7 @@ import MainHeader from './components/MainHeader.vue'
 <template>
 	<MainHeader />
 	<HotNewBooks />
+	<About />
 </template>
 
 <style scoped></style>
