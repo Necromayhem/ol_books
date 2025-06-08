@@ -6,8 +6,8 @@
 			<nav class="menu">
 				<div class="title">
 					<h1>
-						OLYMPIANS<br />
-						BOOKS
+						olympians<br />
+						books
 					</h1>
 				</div>
 				<div class="arrow">
@@ -25,13 +25,13 @@
 			</nav>
 			<div class="description">
 				<div class="subtitle">
-					КНИГИ, КОТОРЫЕ<br />
-					ВОЗНЕСУТ ВАС НА<br />
-					ОЛИМП
+					книги, которые<br />
+					вознесут вас на<br />
+					олимп
 				</div>
 			</div>
 			<div class="more">
-				<button>УЗНАТЬ БОЛЬШЕ</button>
+				<button>узнать больше</button>
 			</div>
 		</div>
 	</header>
@@ -69,11 +69,7 @@
 			height: 100px;
 
 			.title {
-				font-family: 'Archeologicaps', sans-serif;
-				font-weight: 100;
-				font-size: 24px;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
+				@include title;
 			}
 
 			.arrow {
@@ -99,10 +95,7 @@
 			padding-bottom: 77px;
 
 			.subtitle {
-				font-family: 'Forum', sans-serif;
-				font-size: 80px;
-				line-height: 120px;
-				letter-spacing: 0.07em;
+				@include title_0;
 			}
 		}
 
@@ -113,14 +106,11 @@
 				margin-top: 20px;
 				width: 420px;
 				height: 75px;
-				font-family: 'Forum', sans-serif;
-				font-size: 42px;
-				line-height: 1.2;
-				letter-spacing: 0.07em;
 				background: transparent;
 				color: white;
 				border: 2px solid white;
 				transition: all 0.2s;
+				@include title_2;
 
 				&:hover {
 					opacity: 0.9;

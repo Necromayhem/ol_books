@@ -1,1 +1,66 @@
-$font-main: 'Forum', sans-serif;
+@mixin title {
+	font-family: 'Archeologicaps', sans-serif;
+	font-weight: 100;
+	line-height: 1.5;
+	font-size: 24px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+@mixin title_0 {
+	font-family: 'Forum', sans-serif;
+	font-size: 80px;
+	line-height: 1.5;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+}
+
+@mixin title_1 {
+	font-size: 64px;
+	line-height: 1.2;
+	letter-spacing: 0.07em;
+	font-family: 'Forum', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+@mixin title_2 {
+	font-family: 'Forum', sans-serif;
+	font-size: 42px;
+	line-height: 1.2;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+}
+
+@mixin price {
+	font-size: 30px;
+	line-height: 1.5;
+	letter-spacing: 0.07em;
+	font-family: 'rawline';
+	font-weight: 400;
+}
+
+@mixin buy_btn {
+	font-size: 30px;
+	line-height: 1.5;
+	letter-spacing: 0.07rem;
+	font-family: 'Forum', sans-serif;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+@mixin main_text {
+	font-size: 24px;
+	letter-spacing: 0.07em;
+	line-height: 1.5;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+}
+
+@mixin sub_text {
+	font-size: 18px;
+	line-height: 1.5;
+	letter-spacing: 0.07em;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+}

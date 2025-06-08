@@ -200,12 +200,7 @@ const carouselTransform = computed(() => {
 	text-align: center;
 
 	h2 {
-		font-size: 64px;
-		line-height: 1.2;
-		letter-spacing: 0.07rem;
-		font-family: 'Forum', sans-serif;
-		font-weight: 400;
-		text-transform: uppercase;
+		@include title_1;
 	}
 }
 
@@ -243,30 +238,22 @@ const carouselTransform = computed(() => {
 }
 
 .book-title {
+	@include main_text;
 	width: 370px;
 	height: 75px;
 	margin-top: 29px;
 	margin-left: 25px;
 	margin-right: 25px;
 	padding-right: 4px;
-	font-size: 24px;
-	letter-spacing: 0.07rem;
-	line-height: 1.5;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 400;
 	text-align: center;
 }
 
 .book-genre {
+	@include sub_text;
 	display: flex;
 	margin: 0 auto;
 	width: 223px;
 	height: 100px;
-	font-size: 18px;
-	line-height: 1.5;
-	letter-spacing: 0.07rem;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 400;
 	align-items: center;
 	justify-content: center;
 }
@@ -283,39 +270,30 @@ const carouselTransform = computed(() => {
 }
 
 .book-price {
+	@include price;
 	width: 174px;
 	height: 75px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 30px;
-	line-height: 1.5;
-	letter-spacing: 0.07rem;
-	font-family: 'rawline';
-	font-weight: 400;
 }
 
 .buy-btn {
+	@include buy_btn;
 	width: 174px;
 	height: 75px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 30px;
-	line-height: 1.5;
-	letter-spacing: 0.07rem;
-	font-family: 'Forum', sans-serif;
-	font-weight: 400;
-	text-transform: uppercase;
 	border: 3px solid black;
 	cursor: pointer;
 	transition:
-		background-color 0.3s ease,
-		color 0.3s ease;
+		background-color 0.2s ease,
+		color 0.2s ease;
 
-	&:hover {
-		background-color: #000;
-		color: #fff;
+	&:active {
+		background-color: #1596c1;
+		color: black;
 	}
 }
 
