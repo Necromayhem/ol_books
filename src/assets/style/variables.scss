@@ -3,8 +3,16 @@
 	font-weight: 100;
 	line-height: 1.5;
 	font-size: 24px;
-	letter-spacing: 0.1em;
 	text-transform: uppercase;
+}
+
+@mixin logo_big {
+	font-family: 'Archeologicaps', sans-serif;
+	font-weight: 100;
+	line-height: 1.5;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #ffffff;
 }
 
 @mixin title_0 {
@@ -53,7 +61,7 @@
 	font-size: 24px;
 	letter-spacing: 0.07em;
 	line-height: 1.5;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'rawline', sans-serif;
 	font-weight: 400;
 }
 

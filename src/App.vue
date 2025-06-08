@@ -7,11 +7,19 @@ import Submit from './components/Submit.vue'
 </script>
 
 <template>
-	<MainHeader />
-	<HotNewBooks />
-	<About />
-	<Submit />
-	<Footer />
+	<div class="container">
+		<MainHeader />
+		<HotNewBooks />
+		<About />
+		<Submit />
+		<Footer />
+	</div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.container {
+	background-color: #fff;
+	width: 1440px;
+	margin: 0 auto;
+}
+</style>
