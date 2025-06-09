@@ -1,7 +1,26 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+	bgImage: {
+		type: String,
+	},
+	bgHeight: {
+		type: [String, Number],
+	},
+	bgSize: {
+		type: String,
+	},
+})
+</script>
 
 <template>
-	<header class="header">
+	<header
+		class="header"
+		:style="{
+			'background-image': `url(/src/assets/images/header/${bgImage})`,
+			height: `${bgHeight}px`,
+			'background-size': bgSize,
+		}"
+	>
 		<div class="container">
 			<nav class="menu">
 				<div class="title">
@@ -25,9 +44,7 @@
 			</nav>
 			<div class="description">
 				<div class="subtitle">
-					книги, которые<br />
-					вознесут вас на<br />
-					олимп
+					<slot name="text"></slot>
 				</div>
 			</div>
 			<div class="more">
@@ -41,11 +58,8 @@
 @use '/src/assets/style/main.scss' as *;
 
 .header {
-	height: 940px;
 	width: 1440px;
 	max-width: 100%;
-	background-image: url(/src/assets/images/header/Hero_background.png);
-	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	margin: 0 auto;

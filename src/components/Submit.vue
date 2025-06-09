@@ -10,7 +10,7 @@
 				<div class="subtitle">
 					<p>Подпишитесь на нашу новостную рассылку</p>
 				</div>
-				<form class="form">
+				<form class="form" @click.prevent="">
 					<input class="input" type="email" />
 					<button class="btn" type="submit">отправить</button>
 				</form>
@@ -78,9 +78,11 @@
 }
 
 .input {
+	@include main_text;
 	width: 750px;
 	height: 60px;
 	border: 3px solid black;
+	text-align: center;
 }
 
 .btn {

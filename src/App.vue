@@ -1,25 +1,11 @@
 <script setup>
-import About from './components/About.vue'
-import Footer from './components/Footer.vue'
-import HotNewBooks from './components/HotNewBooks.vue'
-import MainHeader from './components/MainHeader.vue'
-import Submit from './components/Submit.vue'
+import Catalog from './pages/Catalog.vue'
+import Home from './pages/Home.vue'
 </script>
 
 <template>
-	<div class="container">
-		<MainHeader />
-		<HotNewBooks />
-		<About />
-		<Submit />
-		<Footer />
-	</div>
+	<!-- <Home /> -->
+	<Catalog />
 </template>
 
-<style lang="scss" scoped>
-.container {
-	background-color: #fff;
-	width: 1440px;
-	margin: 0 auto;
-}
-</style>
+<style lang="scss" scoped></style>
