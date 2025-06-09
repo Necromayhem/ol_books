@@ -3,7 +3,12 @@
 <template>
 	<section class="about">
 		<div class="container">
-			<div class="book-image"></div>
+			<div
+				class="book-image"
+				:style="{
+					'background-image': `url(/images/about/book.jpg)`,
+				}"
+			></div>
 			<div class="about-us">
 				<div class="title">
 					<h2>о нас</h2>
@@ -30,7 +35,12 @@
 					</p>
 				</div>
 			</div>
-			<div class="bust"></div>
+			<div
+				class="bust"
+				:style="{
+					'background-image': `url(/images/about/bust.jpg)`,
+				}"
+			></div>
 		</div>
 	</section>
 </template>
@@ -61,7 +71,6 @@
 .book-image {
 	grid-column: 1 / 2;
 	grid-row: 1 / 2;
-	background-image: url(public/images/about/book.jpg);
 }
 
 .about-us {
@@ -109,6 +118,5 @@
 .bust {
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;
-	background-image: url(public/images/about/bust.jpg);
 }
 </style>
