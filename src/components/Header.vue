@@ -18,7 +18,7 @@ const props = defineProps({
 	<header
 		class="header"
 		:style="{
-			'background-image': `url(/src/assets/images/header/${bgImage})`,
+			'background-image': `url(/images/header/${bgImage})`,
 			height: `${bgHeight}px`,
 			'background-size': bgSize,
 		}"

@@ -21,8 +21,7 @@ import TopNav from '@/components/TopNav.vue'
 	flex-direction: column;
 	color: white;
 }
-
-.top-nav {
+sdsd .top-nav {
 	background: #1596c1;
 }
 </style>

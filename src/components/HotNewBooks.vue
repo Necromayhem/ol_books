@@ -143,7 +143,7 @@ const carouselTransform = computed(() => {
 					@click="prevSlide"
 					:disabled="isTransitioning"
 				>
-					<img src="/src/assets/images/new-books/arrow-prev.svg" alt="prev" />
+					<img src="/images/new-books/arrow-prev.svg" alt="prev" />
 				</button>
 				<button
 					class="dot"
@@ -153,7 +153,7 @@ const carouselTransform = computed(() => {
 					:disabled="isTransitioning"
 				>
 					<img
-						:src="`/src/assets/images/new-books/${currentSlide === index - 1 ? 'dot-active' : 'dot'}.svg`"
+						:src="`/images/new-books/${currentSlide === index - 1 ? 'dot-active' : 'dot'}.svg`"
 						:alt="`dot-${index}`"
 					/>
 				</button>
@@ -162,7 +162,7 @@ const carouselTransform = computed(() => {
 					@click="nextSlide"
 					:disabled="isTransitioning"
 				>
-					<img src="/src/assets/images/new-books/arrow-next.svg" alt="next" />
+					<img src="/images/new-books/arrow-next.svg" alt="next" />
 				</button>
 			</div>
 		</div>

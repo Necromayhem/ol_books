@@ -61,7 +61,7 @@
 .book-image {
 	grid-column: 1 / 2;
 	grid-row: 1 / 2;
-	background-image: url(/src/assets/images/about/book.jpg);
+	background-image: url(images/about/book.jpg);
 }
 
 .about-us {
@@ -109,6 +109,6 @@
 .bust {
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;
-	background-image: url(/src/assets/images/about/bust.jpg);
+	background-image: url(images/about/bust.jpg);
 }
 </style>

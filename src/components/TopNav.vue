@@ -15,13 +15,10 @@ const props = defineProps({
 			</h1>
 		</div>
 		<div class="arrow">
-			<img src="/src/assets/images/header/arrow-down.svg" alt="arrow-down" />
+			<img src="/images/header/arrow-down.svg" alt="arrow-down" />
 		</div>
 		<div class="shopping">
-			<img
-				src="/src/assets/images/header/shopping-cart.svg"
-				alt="shopping-cart"
-			/>
+			<img src="/images/header/shopping-cart.svg" alt="shopping-cart" />
 		</div>
 	</nav>
 </template>
