@@ -1,4 +1,6 @@
 <script setup>
+import TopNav from './TopNav.vue'
+
 const props = defineProps({
 	bgImage: {
 		type: String,
@@ -21,27 +23,8 @@ const props = defineProps({
 			'background-size': bgSize,
 		}"
 	>
+		<TopNav />
 		<div class="container">
-			<nav class="menu">
-				<div class="title">
-					<h1>
-						olympians<br />
-						books
-					</h1>
-				</div>
-				<div class="arrow">
-					<img
-						src="/src/assets/images/header/arrow-down.svg"
-						alt="arrow-down"
-					/>
-				</div>
-				<div class="shopping">
-					<img
-						src="/src/assets/images/header/shopping-cart.svg"
-						alt="shopping-cart"
-					/>
-				</div>
-			</nav>
 			<div class="description">
 				<div class="subtitle">
 					<slot name="text"></slot>
@@ -62,6 +45,7 @@ const props = defineProps({
 	max-width: 100%;
 	background-repeat: no-repeat;
 	background-position: center;
+	z-index: 1;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -74,29 +58,6 @@ const props = defineProps({
 		flex-direction: column;
 		margin: 0;
 		padding-left: 70px;
-
-		.menu {
-			display: flex;
-			width: 1300px;
-			justify-content: space-between;
-			align-items: center;
-			height: 100px;
-
-			.title {
-				@include title;
-			}
-
-			.arrow {
-				width: 64px;
-				height: 18px;
-				margin-right: 140px;
-			}
-
-			.shopping {
-				width: 55px;
-				height: 64px;
-			}
-		}
 
 		.description {
 			display: flex;

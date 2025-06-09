@@ -4,8 +4,7 @@ import Home from './pages/Home.vue'
 </script>
 
 <template>
-	<!-- <Home /> -->
-	<Catalog />
+	<router-view></router-view>
 </template>
 
 <style lang="scss" scoped></style>

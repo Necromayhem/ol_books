@@ -8,9 +8,11 @@
 				BOOKS
 			</div>
 			<div class="phone">+30922040281</div>
-			<div class="main">Главная</div>
-			<div class="catalog">Каталог</div>
-			<div class="cart">Корзина</div>
+			<div class="main"><router-link to="/">Главная</router-link></div>
+			<div class="catalog">
+				<router-link to="/catalog">Каталог</router-link>
+			</div>
+			<div class="cart"><router-link to="/cart">Корзина</router-link></div>
 		</div>
 	</section>
 </template>
@@ -73,5 +75,10 @@
 	width: 200px;
 	height: 37px;
 	text-align: center;
+}
+
+.router-link-active {
+	background: transparent !important;
+	color: inherit !important;
 }
 </style>
