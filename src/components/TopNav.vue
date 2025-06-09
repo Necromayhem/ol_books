@@ -1,7 +1,13 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+	bgColor: {
+		type: String,
+	},
+})
+</script>
 
 <template>
-	<nav class="menu">
+	<nav class="menu" :style="{ 'background-color': bgColor }">
 		<div class="title">
 			<h1>
 				olympians<br />

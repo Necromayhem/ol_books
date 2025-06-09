@@ -1,10 +1,12 @@
 <script setup>
+import Footer from '@/components/Footer.vue'
 import TopNav from '@/components/TopNav.vue'
 </script>
 
 <template>
 	<section class="cart">
-		<TopNav />
+		<TopNav bgColor="#1596c1" />
+		<Footer />
 	</section>
 </template>
 
@@ -18,5 +20,9 @@ import TopNav from '@/components/TopNav.vue'
 	display: flex;
 	flex-direction: column;
 	color: white;
+}
+
+.top-nav {
+	background: #1596c1;
 }
 </style>
