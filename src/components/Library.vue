@@ -1,21 +1,38 @@
-[file name]: Library.vue [file content begin]
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import BookCard from './BookCard.vue'
-import { books } from '../data/NewBooksData'
+import { all_books } from '../data/AllBooksData'
 
 const genres = ['Категория', 'Классика', 'Приключения', 'Сказки']
 
-const selectedGenre = ref('Все')
-const filteredBooks = ref(books)
+const selectedGenre = ref('Категория')
+const filteredBooks = ref(all_books)
+const currentPage = ref(1)
 
 const filterBooks = genre => {
 	selectedGenre.value = genre
 	if (genre === 'Категория') {
-		filteredBooks.value = books
+		filteredBooks.value = all_books
 	} else {
-		filteredBooks.value = books.filter(book => book.genre === genre)
+		filteredBooks.value = all_books.filter(book => book.genre === genre)
 	}
+	currentPage.value = 1
+}
+
+const paginatedBooks = computed(() => {
+	const start = (currentPage.value - 1) * 9
+	const end = start + 9
+	return filteredBooks.value.slice(start, end)
+})
+
+const totalPages = computed(() => Math.ceil(filteredBooks.value.length / 9))
+
+const previousPage = () => {
+	if (currentPage.value > 1) currentPage.value--
+}
+
+const nextPage = () => {
+	if (currentPage.value < totalPages.value) currentPage.value++
 }
 </script>
 
@@ -24,22 +41,42 @@ const filterBooks = genre => {
 		<div class="container">
 			<div class="title">
 				<h2>Библиотека</h2>
-			</div>
-			<div class="genre-filter">
-				<button
-					v-for="genre in genres"
-					:key="genre"
-					@click="filterBooks(genre)"
-					:class="{ active: selectedGenre === genre }"
-					class="genre-btn"
-				>
-					{{ genre }}
-				</button>
+				<div class="categories">
+					<button
+						v-for="genre in genres"
+						:key="genre"
+						@click="filterBooks(genre)"
+						:class="{ active: selectedGenre === genre }"
+						class="genre-btn"
+					>
+						{{ genre }}
+					</button>
+				</div>
 			</div>
 
 			<TransitionGroup name="book-list" tag="div" class="books-container">
-				<BookCard v-for="book in filteredBooks" :key="book.id" :book="book" />
+				<BookCard v-for="book in paginatedBooks" :key="book.id" :book="book" />
 			</TransitionGroup>
+
+			<div class="pagination">
+				<button
+					@click="previousPage"
+					:disabled="currentPage === 1"
+					class="pagination-btn"
+				>
+					〈
+				</button>
+				<span class="page-indicator">
+					{{ currentPage }}/{{ totalPages || 1 }}
+				</span>
+				<button
+					@click="nextPage"
+					:disabled="currentPage === totalPages"
+					class="pagination-btn"
+				>
+					〉
+				</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -51,6 +88,7 @@ const filterBooks = genre => {
 	width: 1440px;
 	margin: 0 auto;
 	background-color: white;
+	margin-top: 140px;
 }
 
 .container {
@@ -72,32 +110,20 @@ const filterBooks = genre => {
 	}
 }
 
-.genre-filter {
+.categories {
+	margin-top: 45px;
 	display: flex;
-	gap: 15px;
-	margin-bottom: 30px;
-	flex-wrap: wrap;
+	gap: 20px;
 	justify-content: center;
+	align-items: center;
 }
 
 .genre-btn {
 	@include main_text;
-	padding: 10px 20px;
-	border: 3px solid black;
-	background-color: white;
+	width: 310px;
+	height: 65px;
 	cursor: pointer;
-	transition:
-		background-color 0.3s ease,
-		color 0.3s ease;
-
-	&:hover {
-		background-color: #f0f0f0;
-	}
-
-	&.active {
-		background-color: black;
-		color: white;
-	}
+	flex-shrink: 0;
 }
 
 .books-container {
@@ -105,6 +131,7 @@ const filterBooks = genre => {
 	flex-wrap: wrap;
 	gap: 20px;
 	justify-content: center;
+	margin-top: 175px;
 }
 
 .book-list-move,
@@ -121,5 +148,31 @@ const filterBooks = genre => {
 
 .book-list-leave-active {
 	position: absolute;
+}
+
+.pagination {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	margin-top: 60px;
+}
+
+.pagination-btn {
+	@include main_text;
+	background: none;
+	border: none;
+	font-size: 28px;
+	cursor: pointer;
+	padding: 10px 20px;
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.page-indicator {
+	@include main_text;
+	font-size: 24px;
 }
 </style>

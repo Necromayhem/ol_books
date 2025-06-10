@@ -5,7 +5,7 @@ import Home from './pages/Home.vue'
 </script>
 
 <template>
-	<Library />
+	<RouterView />
 </template>
 
 <style lang="scss" scoped></style>
