@@ -1,80 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
-
-const books = [
-	{
-		id: 1,
-		title: 'Двадцать тысяч лье под водой',
-		author: 'Ж. Верн',
-		genre: 'Приключения',
-		price: 168,
-		image: 'books/20_000lie.jpg',
-	},
-	{
-		id: 2,
-		title: 'Легенды и мифы Древней Греции',
-		author: 'Н. Кун',
-		genre: 'Эпос и фольклор',
-		price: 174,
-		image: 'books/kun.jpg',
-	},
-	{
-		id: 3,
-		title: 'Гомер',
-		author: 'Илиада',
-		genre: 'Эпос и фольклор',
-		price: 155,
-		image: '/books/iliada.jpg',
-	},
-	{
-		id: 4,
-		title: 'Божественная комедия',
-		author: 'Д. Алигьери',
-		genre: 'Классика',
-		price: 153,
-		image: 'books/god_comedy.jpg',
-	},
-	{
-		id: 5,
-		title: 'Собор Парижской Богоматери',
-		author: 'В. Гюго',
-		genre: 'Классика',
-		price: 172,
-		image: 'books/sobor_parij.jpg',
-	},
-	{
-		id: 6,
-		title: 'Робинзон Крузо',
-		author: 'Д. Дефо',
-		genre: 'Приключения',
-		price: 146,
-		image: '/books/robinzon_kruzo.jpg',
-	},
-	{
-		id: 7,
-		title: 'Мастер и Маргарита',
-		author: 'М. Булгаков',
-		genre: 'Классика',
-		price: 174,
-		image: 'books/master_and_marg.jpg',
-	},
-	{
-		id: 8,
-		title: 'Вино из одуванчиков',
-		author: 'Р. Брэдбери',
-		genre: 'Современная проза',
-		price: 249,
-		image: 'books/vino_iz_oduvanchikov.jpg',
-	},
-	{
-		id: 9,
-		title: 'Алиса в Стране чудес и в Зазеркалье',
-		author: 'Л. Кэрролл',
-		genre: 'Эпос и фольклор',
-		price: 157,
-		image: '/books/alisa.jpg',
-	},
-]
+import { books } from '../data/NewBooksData'
+import BookCard from './BookCard.vue'
 
 const currentSlide = ref(0)
 const totalSlides = computed(() => Math.ceil(books.length / 3))
@@ -126,15 +53,7 @@ const carouselTransform = computed(() => {
 					:class="{ 'transition-effect': isTransitioning }"
 					:style="{ transform: carouselTransform }"
 				>
-					<div class="book-card" v-for="book in books" :key="book.id">
-						<img :src="book.image" :alt="book.title" />
-						<h3 class="book-title">{{ book.author }}, "{{ book.title }}"</h3>
-						<span class="book-genre">{{ book.genre }}</span>
-						<div class="add-to-cart">
-							<div class="book-price">{{ book.price }} р.</div>
-							<button class="buy-btn">Купить</button>
-						</div>
-					</div>
+					<BookCard v-for="book in books" :key="book.id" :book="book" />
 				</div>
 			</div>
 			<div class="carousel-controls">

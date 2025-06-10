@@ -18,7 +18,9 @@ const props = defineProps({
 			<img src="/images/header/arrow-down.svg" alt="arrow-down" />
 		</div>
 		<div class="shopping">
-			<img src="/images/header/shopping-cart.svg" alt="shopping-cart" />
+			<router-link to="/cart"
+				><img src="/images/header/shopping-cart.svg" alt="shopping-cart"
+			/></router-link>
 		</div>
 	</nav>
 </template>

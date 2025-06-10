@@ -4,24 +4,35 @@ import TopNav from '@/components/TopNav.vue'
 </script>
 
 <template>
-	<section class="cart">
+	<div class="page-wrapper">
 		<TopNav bgColor="#1596c1" />
+		<main class="content"></main>
 		<Footer />
-	</section>
+	</div>
 </template>
 
 <style lang="scss">
 @use '/src/assets/style/main.scss' as *;
 
-.cart {
+.page-wrapper {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	width: 1440px;
 	max-width: 100%;
 	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
 	color: white;
 }
-sdsd .top-nav {
+
+.top-nav {
 	background: #1596c1;
+}
+
+.content {
+	flex: 1;
+}
+
+.footer {
+	margin-top: auto;
 }
 </style>
