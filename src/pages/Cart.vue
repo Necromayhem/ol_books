@@ -1,6 +1,21 @@
 <script setup>
 import Footer from '@/components/Footer.vue'
 import TopNav from '@/components/TopNav.vue'
+import { useCartStore } from '@/stores/cartStore'
+
+const cartStore = useCartStore()
+
+const addToCart = item => {
+	cartStore.addItem(item)
+}
+
+const deleteItem = itemId => {
+	cartStore.deleteItem(itemId)
+}
+
+const removeFromCart = item => {
+	cartStore.removeItem(item)
+}
 </script>
 
 <template>
@@ -18,28 +33,28 @@ import TopNav from '@/components/TopNav.vue'
 			</div>
 			<div class="cart-wrapper">
 				<div class="cart-list">
-					<div class="cart-item">
+					<div class="cart-item" v-for="item in cartStore.items" :key="item.id">
 						<div class="title-list">
-							<img src="" alt="book.jpg" />
-							<div>{{ 1312321323123213213 }}, {{ 12312321311111111111 }}</div>
+							<img :src="item.image" alt="book.jpg" />
+							<div>{{ item.author }}, {{ item.title }}</div>
 						</div>
 						<div class="price-list">
-							<div>{{ 147 }} р.</div>
+							<div>{{ item.price }} р.</div>
 						</div>
 						<div class="quantity-list">
-							<button class="btn_remove">
-								<img src="/public/images/cart/minus.svg" alt="" />
+							<button class="btn_remove" @click="deleteItem(item.id)">
+								<img src="/src/assets/images/cart/minus.svg" alt="" />
 							</button>
-							<span>{{ 3 }} шт.</span>
-							<button class="btn_add">
-								<img src="/public/images/cart/plus.svg" alt="" />
+							<span>{{ item.quantity }} шт.</span>
+							<button class="btn_add" @click="addToCart(item)">
+								<img src="/src/assets/images/cart/plus.svg" alt="" />
 							</button>
 						</div>
 						<div class="total-price-list">
-							<div>{{ 174 }} р.</div>
+							<div>{{ item.price * item.quantity }} р.</div>
 						</div>
-						<button class="remove-list">
-							<img src="/public/images/cart/remove.svg" alt="" />
+						<button class="remove-list" @click="removeFromCart(item.id)">
+							<img src="/src/assets/images/cart/remove.svg" alt="" />
 						</button>
 					</div>
 				</div>

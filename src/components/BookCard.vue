@@ -1,10 +1,18 @@
 <script setup>
-defineProps({
+import { useCartStore } from '@/stores/cartStore'
+
+const props = defineProps({
 	book: {
 		type: Object,
 		required: true,
 	},
 })
+
+const cartStore = useCartStore()
+
+const addToCart = () => {
+	cartStore.addItem(props.book)
+}
 </script>
 
 <template>
@@ -14,7 +22,7 @@ defineProps({
 		<span class="book-genre">{{ book.genre }}</span>
 		<div class="add-to-cart">
 			<div class="book-price">{{ book.price }} р.</div>
-			<button class="buy-btn">Купить</button>
+			<button class="buy-btn" @click="addToCart">Купить</button>
 		</div>
 	</div>
 </template>
