@@ -30,7 +30,8 @@ const props = defineProps({
 
 .menu {
 	display: flex;
-	width: 1440px;
+	width: 100%;
+	max-width: 1440px;
 	justify-content: space-between;
 	align-items: center;
 	height: 100px;
