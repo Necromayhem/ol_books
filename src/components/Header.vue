@@ -99,4 +99,60 @@ const props = defineProps({
 		}
 	}
 }
+
+@media (max-width: 1120px) {
+	.container {
+		padding-left: 34px !important;
+	}
+
+	.header {
+		height: auto;
+	}
+
+	.subtitle {
+		font-size: 64px !important;
+		line-height: 1.5 !important;
+		width: 460px !important;
+	}
+
+	.description {
+		padding: 0 !important;
+		height: 288px !important;
+	}
+}
+
+@media (max-width: 840px) {
+	.subtitle {
+		font-size: 64px !important;
+		line-height: 1.5 !important;
+		max-width: 460px !important;
+	}
+
+	.content-wrapper {
+		flex-direction: column !important;
+	}
+
+	.description {
+		width: 400px !important;
+		height: 460px !important;
+		padding-bottom: 40px !important;
+	}
+
+	.more {
+		width: 100% !important;
+		margin-top: 0 !important;
+		padding-bottom: 40px !important;
+		display: flex;
+		justify-content: flex-start;
+
+		button {
+			width: 100% !important;
+			max-width: 220px;
+			height: 50px;
+			font-size: 24px !important;
+			line-height: 1.5 !important;
+			margin-top: 20px !important;
+		}
+	}
+}
 </style>

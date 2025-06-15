@@ -78,4 +78,24 @@ const closeMenu = () => {
 		height: 64px;
 	}
 }
+
+@media (max-width: 1120px) {
+	.title {
+		font-size: 80px;
+	}
+
+	.menu {
+		padding-left: 34px;
+		padding-right: 36px;
+	}
+
+	.arrow {
+		display: grid;
+		place-items: center;
+		width: 64px;
+		height: 18px;
+		cursor: pointer;
+		margin-right: 0 !important;
+	}
+}
 </style>
