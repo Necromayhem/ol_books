@@ -2,8 +2,11 @@
 import Footer from '@/components/Footer.vue'
 import TopNav from '@/components/TopNav.vue'
 import { useCartStore } from '@/stores/cartStore'
+import { ref } from 'vue'
 
 const cartStore = useCartStore()
+const isOrderPlaced = ref(false)
+const deletingItemId = ref(null)
 
 const addToCart = item => {
 	cartStore.addItem(item)
@@ -13,8 +16,18 @@ const deleteItem = itemId => {
 	cartStore.deleteItem(itemId)
 }
 
-const removeFromCart = item => {
-	cartStore.removeItem(item)
+const removeFromCart = async itemId => {
+	deletingItemId.value = itemId
+	await new Promise(resolve => setTimeout(resolve, 300))
+	cartStore.removeItem(itemId)
+	deletingItemId.value = null
+}
+
+const placeOrder = () => {
+	if (cartStore.items.length > 0) {
+		isOrderPlaced.value = true
+		cartStore.clearCart()
+	}
 }
 </script>
 
@@ -25,57 +38,70 @@ const removeFromCart = item => {
 			<div class="title">
 				<h2>Корзина</h2>
 			</div>
-			<div v-if="cartStore.items.length === 0" class="empty_cart">
-				<span
-					>Ваша корзина пока пуста. Отыщите в библиотеке необходимые
-					фолианты.</span
-				>
+
+			<div v-if="isOrderPlaced" class="order-message">
+				Благодарим за покупку!<br />
+				Ваши ценные манускрипты прибудут в ближайшее время. Возвращайтесь еще!
 			</div>
-			<div v-else>
-				<div class="info">
-					<div class="item">Название товара</div>
-					<div class="price">Цена за шт.</div>
-					<div class="quantity">Количество</div>
-					<div class="total-price">Общая цена</div>
+
+			<template v-else>
+				<div v-if="cartStore.items.length === 0" class="empty_cart">
+					<span
+						>Ваша корзина пока пуста. Отыщите в библиотеке необходимые
+						фолианты.</span
+					>
 				</div>
-				<div class="cart-wrapper">
-					<div class="cart-list">
-						<div
-							class="cart-item"
-							v-for="item in cartStore.items"
-							:key="item.id"
-						>
-							<div class="title-list">
-								<img :src="item.image" alt="book.jpg" />
-								<div>{{ item.author }}, “{{ item.title }}”</div>
-							</div>
-							<div class="price-list">
-								<div>{{ item.price }} р.</div>
-							</div>
-							<div class="quantity-list">
-								<button class="btn_remove" @click="deleteItem(item.id)">
-									<img src="/src/assets/images/cart/minus.svg" alt="" />
-								</button>
-								<span>{{ item.quantity }} шт.</span>
-								<button class="btn_add" @click="addToCart(item)">
-									<img src="/src/assets/images/cart/plus.svg" alt="" />
-								</button>
-							</div>
-							<div class="total-price-list">
-								<div>{{ item.price * item.quantity }} р.</div>
-							</div>
-							<button class="remove-list" @click="removeFromCart(item.id)">
-								<img src="/src/assets/images/cart/remove.svg" alt="" />
-							</button>
+				<div v-else>
+					<div class="info">
+						<div class="item">Название товара</div>
+						<div class="price">Цена за шт.</div>
+						<div class="quantity">Количество</div>
+						<div class="total-price">Общая цена</div>
+					</div>
+					<div class="cart-wrapper">
+						<div class="cart-list">
+							<TransitionGroup name="item">
+								<div
+									class="cart-item"
+									v-for="item in cartStore.items"
+									:key="item.id"
+									:class="{ 'deleting-item': deletingItemId === item.id }"
+								>
+									<div class="title-list">
+										<img :src="item.image" alt="book.jpg" />
+										<div>{{ item.author }}, "{{ item.title }}"</div>
+									</div>
+									<div class="price-list">
+										<div>{{ item.price }} р.</div>
+									</div>
+									<div class="quantity-list">
+										<button class="btn_remove" @click="deleteItem(item.id)">
+											<img src="/src/assets/images/cart/minus.svg" alt="" />
+										</button>
+										<span>{{ item.quantity }} шт.</span>
+										<button class="btn_add" @click="addToCart(item)">
+											<img src="/src/assets/images/cart/plus.svg" alt="" />
+										</button>
+									</div>
+									<div class="total-price-list">
+										<div>{{ item.price * item.quantity }} р.</div>
+									</div>
+									<button class="remove-list" @click="removeFromCart(item.id)">
+										<img src="/src/assets/images/cart/remove.svg" alt="" />
+									</button>
+								</div>
+							</TransitionGroup>
 						</div>
 					</div>
+					<div class="total">
+						<span class="for_payment">Итого к оплате</span>
+						<span class="pay">{{ cartStore.totalPrice }} р.</span>
+					</div>
+					<div class="order">
+						<button @click="placeOrder">Оформить заказ</button>
+					</div>
 				</div>
-				<div class="total">
-					<span class="for_payment">Итого к оплате</span>
-					<span class="pay">{{ cartStore.totalPrice }} р.</span>
-				</div>
-				<div class="order"><button>Оформить заказ</button></div>
-			</div>
+			</template>
 		</main>
 		<Footer />
 	</div>
@@ -121,6 +147,56 @@ const removeFromCart = item => {
 		@include title_1;
 		color: black;
 	}
+}
+
+.order-message {
+	@include main_text;
+	color: black;
+	width: 100%;
+	max-width: 1300px;
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	animation: fadeIn 0.5s ease-in-out;
+	font-size: 24px;
+	line-height: 1.5;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.item-move, /* apply transition to moving elements */
+.item-enter-active,
+.item-leave-active {
+	transition: all 0.3s ease;
+}
+
+.item-enter-from,
+.item-leave-to {
+	opacity: 0;
+	transform: translateX(-30px);
+}
+
+.item-leave-active {
+	position: absolute;
+	width: calc(100% - 84px);
+}
+
+.deleting-item {
+	background-color: rgba(255, 0, 0, 0.1);
+	transition: background-color 0.3s ease;
 }
 
 .info {
