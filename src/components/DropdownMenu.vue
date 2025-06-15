@@ -109,12 +109,12 @@ const handleNavigation = path => {
 		}
 
 		&:active {
-			color: #1596c1; /* Синий цвет текста при нажатии */
+			color: #1596c1;
 		}
 
 		&:active::after {
 			width: 100%;
-			background-color: #1596c1; /* Синий цвет подчёркивания при нажатии */
+			background-color: #1596c1;
 		}
 	}
 }

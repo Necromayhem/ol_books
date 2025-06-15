@@ -29,6 +29,7 @@ import Submit from '@/components/Submit.vue'
 <style lang="scss" scoped>
 .container {
 	background-color: #fff;
+	max-width: 100%;
 	width: 1440px;
 	margin: 0 auto;
 }

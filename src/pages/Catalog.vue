@@ -24,6 +24,7 @@ import Library from '@/components/Library.vue'
 .container {
 	background-color: #fff;
 	width: 1440px;
+	max-width: 100%;
 	margin: 0 auto;
 	min-height: 100vh;
 	display: flex;
