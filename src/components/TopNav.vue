@@ -23,10 +23,12 @@ const closeMenu = () => {
 	<div class="nav-container">
 		<nav class="menu" :style="{ 'background-color': bgColor }">
 			<div class="title">
-				<h1>
-					olympians<br />
-					books
-				</h1>
+				<router-link to="/"
+					><h1>
+						olympians<br />
+						books
+					</h1></router-link
+				>
 			</div>
 			<div class="arrow" @click="toggleMenu">
 				<img src="/images/header/arrow-down.svg" alt="arrow-down" />

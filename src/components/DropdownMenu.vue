@@ -87,6 +87,35 @@ const handleNavigation = path => {
 
 	a {
 		cursor: pointer;
+		position: relative;
+		text-decoration: none;
+		transition: all 0.3s ease;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -5px;
+			width: 0;
+			height: 2px;
+			background-color: black;
+			transition:
+				width 0.3s ease,
+				background-color 0.3s ease;
+		}
+
+		&:hover::after {
+			width: 100%;
+		}
+
+		&:active {
+			color: #1596c1; /* Синий цвет текста при нажатии */
+		}
+
+		&:active::after {
+			width: 100%;
+			background-color: #1596c1; /* Синий цвет подчёркивания при нажатии */
+		}
 	}
 }
 

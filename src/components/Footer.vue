@@ -3,10 +3,12 @@
 <template>
 	<section class="footer">
 		<div class="container">
-			<div class="logo">
-				OLYMPIANS<br />
-				BOOKS
-			</div>
+			<router-link to="/"
+				><div class="logo">
+					OLYMPIANS<br />
+					BOOKS
+				</div></router-link
+			>
 			<div class="phone">+30922040281</div>
 			<div class="main"><router-link to="/">Главная</router-link></div>
 			<div class="catalog">
