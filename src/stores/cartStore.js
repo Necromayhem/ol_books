@@ -1,4 +1,3 @@
-import { remove } from 'lodash'
 import { defineStore } from 'pinia'
 
 export const useCartStore = defineStore('store', {
