@@ -146,4 +146,11 @@ const closeMenu = () => {
 		}
 	}
 }
+
+@media (max-width: 320px) {
+	.menu {
+		padding-left: 15px !important;
+		padding-right: 18px !important;
+	}
+}
 </style>

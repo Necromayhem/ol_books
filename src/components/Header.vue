@@ -210,7 +210,8 @@ const props = defineProps({
 
 @media (max-width: 590px) {
 	.header {
-		min-width: 590px;
+		width: 100%;
+		max-width: 590px;
 	}
 
 	.subtitle {
@@ -229,11 +230,17 @@ const props = defineProps({
 	.header {
 		width: 100%;
 		min-width: 320px;
+		min-height: 590px !important;
 		height: 590px !important;
 		background-size: cover !important;
 		background-position: center right 42% !important;
 		background-repeat: no-repeat !important;
 		overflow: hidden;
+	}
+
+	.description {
+		margin-top: 0 !important;
+		padding-top: 0 !important;
 	}
 
 	.container {
