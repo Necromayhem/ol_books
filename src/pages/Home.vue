@@ -13,11 +13,7 @@ import Submit from '@/components/Submit.vue'
 			bg-height="940"
 			bg-size="1440px 940px"
 		>
-			<template v-slot:text>
-				книги, которые<br />
-				вознесут вас на<br />
-				олимп
-			</template>
+			<template v-slot:text> книги, которые вознесут вас на олимп </template>
 		</Header>
 		<HotNewBooks />
 		<About />

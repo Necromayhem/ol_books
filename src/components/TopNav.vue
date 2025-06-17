@@ -98,4 +98,52 @@ const closeMenu = () => {
 		margin-right: 0 !important;
 	}
 }
+
+@media (max-width: 1120px) {
+	.title h1 {
+		font-size: 14px;
+	}
+
+	.arrow img {
+		width: 32px;
+		height: 10px;
+	}
+
+	.shopping {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			width: 28px;
+			height: 32px;
+			margin: 0 auto;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.menu {
+		height: 50px;
+	}
+}
+
+@media (max-width: 590px) {
+	.title h1 {
+		font-size: 10px;
+	}
+
+	.arrow img {
+		width: 40px;
+		height: 12px;
+	}
+
+	.shopping {
+		img {
+			width: 35px;
+			height: 40px;
+			margin: 0 auto;
+		}
+	}
+}
 </style>
