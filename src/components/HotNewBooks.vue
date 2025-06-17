@@ -256,4 +256,49 @@ const carouselTransform = computed(() => {
 	width: 30px;
 	height: 30px;
 }
+
+@media (max-width: 1370px) {
+	.new-books {
+		height: auto;
+		padding-bottom: 40px;
+	}
+
+	.carousel-wrapper {
+		width: 340px !important;
+		overflow: visible;
+		display: flex;
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	.mobile-controls {
+		display: block;
+		z-index: 1;
+	}
+
+	.carousel {
+		gap: 0 !important;
+		margin-top: 40px !important;
+		order: 2;
+		width: 340px;
+		overflow: hidden;
+	}
+
+	.book-card {
+		width: 340px !important;
+		height: 585px !important;
+		margin: 0 auto !important;
+		border: 3px solid black;
+
+		img {
+			width: 200px !important;
+			height: 301px !important;
+			margin: 25px auto 0 !important;
+		}
+	}
+
+	.carousel-controls {
+		display: none;
+	}
+}
 </style>

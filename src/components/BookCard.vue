@@ -104,4 +104,31 @@ const addToCart = () => {
 		color: black;
 	}
 }
+
+@media (max-width: 1370px) {
+	.book-title {
+		font-size: 18px;
+		width: 262px;
+		height: 70px;
+	}
+
+	.book-genre {
+		font-size: 14px;
+		width: 181px;
+		height: 50px;
+	}
+
+	.book-price {
+		font-size: 22px;
+		width: 140px;
+		height: 50px;
+	}
+
+	.buy-btn {
+		width: 140px;
+		height: 50px;
+		font-size: 24px;
+		margin-right: 20px;
+	}
+}
 </style>
