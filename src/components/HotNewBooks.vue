@@ -1,12 +1,28 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { books } from '../data/NewBooksData'
 import BookCard from './BookCard.vue'
 
 const currentSlide = ref(0)
-const totalSlides = computed(() => Math.ceil(books.length / 3))
+const isMobile = ref(false)
+const totalSlides = computed(() =>
+	isMobile.value ? books.length : Math.ceil(books.length / 3)
+)
 const carousel = ref(null)
 const isTransitioning = ref(false)
+
+const checkMobile = () => {
+	isMobile.value = window.innerWidth < 1370
+}
+
+onMounted(() => {
+	checkMobile()
+	window.addEventListener('resize', checkMobile)
+})
+
+onUnmounted(() => {
+	window.removeEventListener('resize', checkMobile)
+})
 
 const goToSlide = index => {
 	if (isTransitioning.value || index === currentSlide.value) return
@@ -37,7 +53,11 @@ const prevSlide = () => {
 }
 
 const carouselTransform = computed(() => {
-	return `translateX(-${currentSlide.value * (420 + 20) * 3}px)`
+	if (isMobile.value) {
+		const bookWidth = window.innerWidth < 450 ? 290 : 340
+		return `translateX(-${currentSlide.value * bookWidth}px)`
+	}
+	return `translateX(-${currentSlide.value * (420 * 3 + 20 * 2)}px)`
 })
 </script>
 
@@ -263,32 +283,31 @@ const carouselTransform = computed(() => {
 		padding-bottom: 40px;
 	}
 
-	.carousel-wrapper {
-		width: 509px !important;
-		overflow: visible;
-		display: flex;
-		justify-content: center;
-		gap: 10px;
-		position: relative;
+	.title {
+		width: 460px;
+		height: 50px;
+		h2 {
+			font-size: 48px;
+		}
 	}
 
-	.mobile-controls {
-		display: block;
-		z-index: 1;
+	.carousel-wrapper {
+		width: 340px !important;
+		overflow: hidden;
+		margin: 0 auto;
+		position: relative;
 	}
 
 	.carousel {
 		gap: 0 !important;
 		margin-top: 40px !important;
-		order: 2;
-		width: 340px;
-		overflow: hidden;
+		width: max-content;
 	}
 
 	.book-card {
 		width: 340px !important;
 		height: 585px !important;
-		margin: 0 auto !important;
+		margin: 0 !important;
 		border: 3px solid black;
 
 		img {
@@ -300,16 +319,37 @@ const carouselTransform = computed(() => {
 
 	.container {
 		position: relative;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 
 	.carousel-controls {
-		margin-top: 400px;
 		position: absolute;
-		width: 508px;
+		bottom: 0;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+		max-width: 500px;
+		margin-top: 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 20px;
 
 		.dot {
 			display: none;
 		}
+	}
+
+	.arrow-prev {
+		position: absolute;
+		left: 0;
+	}
+
+	.arrow-next {
+		position: absolute;
+		right: 0;
 	}
 
 	.arrow-prev img {
@@ -320,6 +360,25 @@ const carouselTransform = computed(() => {
 	.arrow-next img {
 		width: 50px;
 		height: 100px;
+	}
+}
+
+@media (max-width: 450px) {
+	.book-card {
+		width: 290px !important;
+		height: 500px !important;
+	}
+
+	.carousel-wrapper {
+		width: 290px !important;
+	}
+
+	.title {
+		width: 290px;
+		height: 50px;
+		h2 {
+			font-size: 30px;
+		}
 	}
 }
 </style>

@@ -131,4 +131,47 @@ const addToCart = () => {
 		margin-right: 20px;
 	}
 }
+
+@media (max-width: 450px) {
+	.book-card {
+		width: 290px;
+		height: 500px;
+
+		img {
+			width: 132px;
+			height: 200px;
+			margin-top: 25px;
+			margin: 25px auto 0px auto;
+		}
+	}
+
+	.book-title {
+		font-size: 18px;
+		width: 262px;
+		height: 70px;
+	}
+
+	.book-genre {
+		font-size: 14px;
+		width: 181px;
+		height: 50px;
+	}
+
+	.book-price {
+		font-size: 22px;
+		width: 115px;
+		height: 50px;
+	}
+
+	.buy-btn {
+		width: 115px;
+		height: 50px;
+		font-size: 24px;
+		margin-right: 20px;
+	}
+
+	.add-to-cart {
+		width: 290px !important;
+	}
+}
 </style>
