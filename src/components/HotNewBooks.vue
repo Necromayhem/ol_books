@@ -264,11 +264,12 @@ const carouselTransform = computed(() => {
 	}
 
 	.carousel-wrapper {
-		width: 340px !important;
+		width: 509px !important;
 		overflow: visible;
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		gap: 10px;
+		position: relative;
 	}
 
 	.mobile-controls {
@@ -297,8 +298,28 @@ const carouselTransform = computed(() => {
 		}
 	}
 
+	.container {
+		position: relative;
+	}
+
 	.carousel-controls {
-		display: none;
+		margin-top: 400px;
+		position: absolute;
+		width: 508px;
+
+		.dot {
+			display: none;
+		}
+	}
+
+	.arrow-prev img {
+		width: 50px;
+		height: 100px;
+	}
+
+	.arrow-next img {
+		width: 50px;
+		height: 100px;
 	}
 }
 </style>
