@@ -23,7 +23,8 @@
 @use '/src/assets/style/main.scss' as *;
 
 .submit {
-	width: 1440px;
+	width: 100%;
+	max-width: 1440px;
 	height: 220px;
 	display: flex;
 	justify-content: center;
@@ -33,7 +34,8 @@
 }
 
 .container {
-	width: 1300px;
+	width: 100%;
+	max-width: 1300px;
 	height: 220px;
 	margin: 0 auto;
 	margin-top: 0;
@@ -46,7 +48,8 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	width: 1080px;
+	width: 100%;
+	max-width: 1080px;
 	height: 220px;
 }
 
@@ -72,6 +75,8 @@
 }
 
 .form {
+	width: 100%;
+	max-width: 1080px;
 	margin-top: 60px;
 	display: flex;
 	gap: 20px;
@@ -79,7 +84,8 @@
 
 .input {
 	@include main_text;
-	width: 750px;
+	width: 100%;
+	max-width: 750px;
 	height: 60px;
 	border: 3px solid black;
 	text-align: center;
@@ -87,7 +93,8 @@
 
 .btn {
 	@include buy_btn;
-	width: 310px;
+	width: 100%;
+	max-width: 310px;
 	height: 60px;
 	border: 3px solid black;
 	display: flex;
@@ -103,6 +110,89 @@
 	&:active {
 		background-color: #1596c1;
 		color: black;
+	}
+}
+
+@media (max-width: 1100px) {
+	.form {
+		justify-content: center;
+	}
+
+	.input {
+		width: 400px;
+		height: 50px;
+	}
+
+	.btn {
+		width: 160px;
+		height: 50px;
+		font-size: 24px;
+	}
+}
+
+@media (max-width: 786px) {
+	.container-wrapper {
+		width: 100%;
+		height: 190px;
+		max-width: 580px;
+	}
+
+	.title {
+		width: 460px;
+
+		h2 {
+			font-size: 30px;
+		}
+	}
+
+	.subtitle {
+		margin-top: 20px;
+		width: 460px;
+		height: 50px;
+	}
+
+	p {
+		font-size: 18px !important;
+	}
+}
+
+@media (max-width: 595px) {
+	.submit {
+		margin-top: 70px;
+	}
+
+	.container-wrapper {
+		width: 100%;
+		height: 290px;
+		max-width: 290px;
+	}
+
+	.form {
+		margin-top: 40px;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.input {
+		width: 290px;
+		height: 50px;
+	}
+
+	.btn {
+		width: 190px;
+		height: 50px;
+	}
+
+	.title {
+		width: 290px;
+		height: 80px;
+	}
+
+	.subtitle {
+		margin-top: 10px;
+		width: 290px;
+		height: 50px;
 	}
 }
 </style>
