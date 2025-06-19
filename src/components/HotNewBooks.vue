@@ -380,5 +380,47 @@ const carouselTransform = computed(() => {
 			font-size: 30px;
 		}
 	}
+
+	.carousel-controls {
+		margin-top: 40px !important;
+		position: static;
+		transform: none;
+		width: 100%;
+		max-width: 161px;
+		display: flex;
+		justify-content: space-between;
+		margin-top: 20px;
+		padding: 0;
+		height: auto;
+
+		.dot {
+			display: none;
+		}
+
+		.arrow-prev,
+		.arrow-next {
+			position: static;
+		}
+	}
+
+	.arrow-prev img,
+	.arrow-next img {
+		width: 14px;
+		height: 50px;
+	}
+}
+
+@media (max-width: 320px) {
+	.new-books {
+		margin-top: 70px !important;
+	}
+
+	.container {
+		width: 290px;
+		max-width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		margin: 0 auto;
+	}
 }
 </style>
