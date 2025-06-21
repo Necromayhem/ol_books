@@ -39,7 +39,8 @@ const route = useRoute()
 @use '/src/assets/style/main.scss' as *;
 
 .footer {
-	width: 1440px;
+	width: 100%;
+	max-width: 1440px;
 	height: 120px;
 	background-color: #1596c1;
 	margin: 0 auto;
@@ -47,7 +48,8 @@ const route = useRoute()
 }
 
 .container {
-	width: 1300px;
+	width: 100%;
+	max-width: 1300px;
 	height: 120px;
 	display: flex;
 	align-items: center;
@@ -64,12 +66,12 @@ const route = useRoute()
 .phone {
 	@include main_text;
 	color: #ffffff;
-	width: fit-content; /* Подстраивается под текст */
+	width: fit-content;
 	height: 37px;
 	margin-right: 20px;
 	cursor: pointer;
 	position: relative;
-	display: inline-block; /* Чтобы подчёркивание было по ширине текста */
+	display: inline-block;
 
 	&::after {
 		content: '';
@@ -107,7 +109,8 @@ const route = useRoute()
 .cart {
 	@include main_text;
 	color: #ffffff;
-	width: 200px;
+	width: 100%;
+	max-width: 200px;
 	height: 37px;
 	margin-right: 20px;
 	text-align: center;
@@ -150,6 +153,106 @@ const route = useRoute()
 			width: 100%;
 			background-color: black;
 		}
+	}
+}
+
+@media (max-width: 1400px) {
+	.container {
+		padding-right: 34px;
+		padding-left: 34px;
+	}
+}
+
+@media (max-width: 950px) {
+	.container {
+		justify-content: space-between;
+	}
+
+	.logo {
+		width: 160px;
+		height: 60px;
+		font-size: 20px;
+	}
+
+	.phone {
+		width: 160px;
+		height: 27px;
+		font-size: 18px;
+	}
+
+	.main,
+	.catalog,
+	.cart {
+		width: 100px;
+		height: 36px;
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 655px) {
+	.footer {
+		height: 210px;
+	}
+
+	.container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto auto;
+		align-items: start;
+		height: 210px;
+		padding: 15px;
+	}
+
+	.logo {
+		grid-column: 1;
+		grid-row: 1;
+		width: 100%;
+		height: auto;
+		margin: 0;
+		transform: translateY(30px);
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.phone {
+		grid-column: 1;
+		grid-row: 3;
+		width: 100%;
+		height: auto;
+		margin: 0;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.main,
+	.catalog,
+	.cart {
+		width: 100%;
+		height: auto;
+		margin: 0;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		text-align: right;
+	}
+
+	.main {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.catalog {
+		grid-column: 2;
+		grid-row: 2;
+		transform: translateY(-10px);
+	}
+
+	.cart {
+		grid-column: 2;
+		grid-row: 3;
+		transform: translateY(-5px);
 	}
 }
 </style>
