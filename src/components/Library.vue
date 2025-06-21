@@ -85,7 +85,8 @@ const nextPage = () => {
 @use '/src/assets/style/main.scss' as *;
 
 .library {
-	width: 1440px;
+	width: 100%;
+	max-width: 1440px;
 	margin: 0 auto;
 	background-color: white;
 	margin-top: 140px;
@@ -101,7 +102,8 @@ const nextPage = () => {
 }
 
 .title {
-	width: 860px;
+	width: 100%;
+	max-width: 1300px;
 	height: 100px;
 	text-align: center;
 
@@ -111,8 +113,10 @@ const nextPage = () => {
 }
 
 .categories {
-	margin-top: 45px;
 	display: flex;
+	width: 100%;
+	max-width: 1300px;
+	margin-top: 45px;
 	gap: 20px;
 	justify-content: center;
 	align-items: center;
@@ -120,10 +124,10 @@ const nextPage = () => {
 
 .genre-btn {
 	@include main_text;
-	width: 310px;
+	width: 100%;
+	max-width: 310px;
 	height: 65px;
 	cursor: pointer;
-	flex-shrink: 0;
 }
 
 .books-container {
@@ -174,5 +178,44 @@ const nextPage = () => {
 .page-indicator {
 	@include main_text;
 	font-size: 24px;
+}
+
+@media (max-width: 1000px) {
+	.library {
+		padding-right: 34px;
+		padding-left: 34px;
+	}
+}
+
+@media (max-width: 930px) {
+	.books-container {
+		margin-top: 115px;
+	}
+
+	:deep(.book-card) {
+		width: 340px;
+		height: 585px;
+	}
+}
+
+@media (max-width: 860px) {
+	.library {
+		margin-top: 90px;
+	}
+
+	.title {
+		h2 {
+			font-size: 48px;
+		}
+	}
+
+	.genre-btn:first-child {
+		font-size: 24px;
+		text-transform: uppercase;
+	}
+
+	.genre-btn:not(:first-child) {
+		font-size: 18px;
+	}
 }
 </style>
