@@ -175,9 +175,10 @@ const route = useRoute()
 	}
 
 	.phone {
-		width: 160px;
+		width: auto;
 		height: 27px;
 		font-size: 18px;
+		padding: 0;
 	}
 
 	.main,
@@ -218,12 +219,23 @@ const route = useRoute()
 	.phone {
 		grid-column: 1;
 		grid-row: 3;
-		width: 100%;
+		width: 145px;
 		height: auto;
 		margin: 0;
-		display: flex;
+		padding: 0;
+		display: inline-block;
 		justify-content: flex-start;
 		align-items: center;
+
+		&::after {
+			left: 0;
+			right: auto;
+			width: 0;
+		}
+
+		&:hover::after {
+			width: 100%;
+		}
 	}
 
 	.main,
@@ -236,6 +248,21 @@ const route = useRoute()
 		justify-content: flex-end;
 		align-items: center;
 		text-align: right;
+
+		a {
+			display: inline-block;
+			width: auto;
+
+			&::after {
+				left: 0;
+				right: auto;
+				width: 0;
+			}
+
+			&:hover::after {
+				width: 100%;
+			}
+		}
 	}
 
 	.main {
