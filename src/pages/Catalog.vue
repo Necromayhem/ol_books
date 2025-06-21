@@ -42,4 +42,14 @@ import Library from '@/components/Library.vue'
 .footer {
 	flex-shrink: 0;
 }
+
+@media (max-width: 840px) {
+	:deep(.header) {
+		background-position: center right 50% !important;
+
+		.subtitle {
+			margin-top: 40px !important;
+		}
+	}
+}
 </style>

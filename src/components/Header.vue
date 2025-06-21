@@ -98,7 +98,7 @@ const props = defineProps({
 	}
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1348px) {
 	.container {
 		padding-left: 34px !important;
 	}
