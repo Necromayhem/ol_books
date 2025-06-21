@@ -1,39 +1,104 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import BookCard from './BookCard.vue'
 import { all_books } from '../data/AllBooksData'
+import { debounce } from 'lodash'
 
 const genres = ['Категория', 'Классика', 'Приключения', 'Сказки']
 
 const selectedGenre = ref('Категория')
 const filteredBooks = ref(all_books)
 const currentPage = ref(1)
+const booksPerPage = ref(9)
 
-const filterBooks = genre => {
-	selectedGenre.value = genre
-	if (genre === 'Категория') {
-		filteredBooks.value = all_books
-	} else {
-		filteredBooks.value = all_books.filter(book => book.genre === genre)
-	}
-	currentPage.value = 1
+// Функция для определения количества книг на странице
+const calculateBooksPerPage = width => {
+	if (width <= 600) return 3
+	if (width <= 767) return 3
+	if (width < 1300) return 4
+	return 9
 }
 
+// функция обновления
+const updateBooksPerPage = () => {
+	const viewportWidth = window.innerWidth
+	console.log('[Resize] Текущая ширина viewport:', viewportWidth, 'px')
+
+	const newValue = calculateBooksPerPage(viewportWidth)
+
+	if (booksPerPage.value !== newValue) {
+		booksPerPage.value = newValue
+		console.log('[Resize] Обновлено booksPerPage:', newValue)
+	} else {
+		console.log('[Resize] Ширина изменилась, но booksPerPage остаётся тем же')
+	}
+}
+
+// Дебаунс с возможностью принудительного обновления
+const debouncedUpdate = debounce(updateBooksPerPage, 150, {
+	leading: true,
+	trailing: true,
+})
+
+// Принудительное обновление при первом рендере
+const forceUpdate = () => {
+	debouncedUpdate()
+	debouncedUpdate.flush() // Немедленное выполнение
+}
+
+onMounted(() => {
+	console.log('Компонент смонтирован. Инициализация...')
+	forceUpdate()
+	window.addEventListener('resize', debouncedUpdate)
+
+	// Дополнительная проверка через 500мс на случай асинхронных изменений
+	setTimeout(forceUpdate, 500)
+})
+
+onBeforeUnmount(() => {
+	console.log('Компонент демонтируется. Очистка...')
+	window.removeEventListener('resize', debouncedUpdate)
+	debouncedUpdate.cancel()
+})
+
+// Логика фильтрации книг
+const filterBooks = genre => {
+	selectedGenre.value = genre
+	filteredBooks.value =
+		genre === 'Категория'
+			? all_books
+			: all_books.filter(book => book.genre === genre)
+	currentPage.value = 1
+	console.log(
+		'Применён фильтр:',
+		genre,
+		'Найдено книг:',
+		filteredBooks.value.length
+	)
+}
+
+// Пагинация
 const paginatedBooks = computed(() => {
-	const start = (currentPage.value - 1) * 9
-	const end = start + 9
+	const start = (currentPage.value - 1) * booksPerPage.value
+	const end = start + booksPerPage.value
 	return filteredBooks.value.slice(start, end)
 })
 
-const totalPages = computed(() => Math.ceil(filteredBooks.value.length / 9))
+const totalPages = computed(() =>
+	Math.ceil(filteredBooks.value.length / booksPerPage.value)
+)
 
-const previousPage = () => {
-	if (currentPage.value > 1) currentPage.value--
-}
+const previousPage = () => currentPage.value > 1 && currentPage.value--
+const nextPage = () =>
+	currentPage.value < totalPages.value && currentPage.value++
 
-const nextPage = () => {
-	if (currentPage.value < totalPages.value) currentPage.value++
-}
+watch(booksPerPage, (newVal, oldVal) => {
+	console.log('Изменение booksPerPage:', oldVal, '→', newVal)
+	if (currentPage.value > Math.ceil(filteredBooks.value.length / newVal)) {
+		currentPage.value = 1
+		console.log('Сброс текущей страницы на 1 из-за изменения booksPerPage')
+	}
+})
 </script>
 
 <template>
@@ -216,6 +281,70 @@ const nextPage = () => {
 
 	.genre-btn:not(:first-child) {
 		font-size: 18px;
+	}
+}
+
+@media (max-width: 600px) {
+	.library {
+		margin-top: 40px;
+	}
+
+	.categories {
+		flex-direction: column;
+		width: 240px;
+		height: 200px;
+		margin: 0 auto;
+		margin-top: 10px;
+	}
+
+	.title h2 {
+		font-size: 30px;
+	}
+
+	.books-container {
+		margin-top: 190px;
+		gap: 10px;
+	}
+
+	:deep(.book-card) {
+		width: 290px;
+		height: 500px;
+
+		img {
+			width: 132px;
+			height: 200px;
+			margin-top: 25px;
+			margin: 25px auto 0px auto;
+		}
+
+		.book-title {
+			font-size: 18px;
+			width: 262px;
+			height: 70px;
+		}
+
+		.book-genre {
+			font-size: 14px;
+			width: 181px;
+			height: 50px;
+		}
+
+		.book-price {
+			font-size: 22px;
+			width: 115px;
+			height: 50px;
+		}
+
+		.buy-btn {
+			width: 115px;
+			height: 50px;
+			font-size: 24px;
+			margin-right: 20px;
+		}
+
+		.add-to-cart {
+			width: 290px !important;
+		}
 	}
 }
 </style>
