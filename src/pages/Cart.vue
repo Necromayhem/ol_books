@@ -136,7 +136,8 @@ const placeOrder = () => {
 .title {
 	margin: 0 auto;
 	margin-top: 140px;
-	width: 860px;
+	width: 100%;
+	max-width: 860px;
 	height: 100px;
 	display: flex;
 	align-items: center;
@@ -177,7 +178,7 @@ const placeOrder = () => {
 	}
 }
 
-.item-move, /* apply transition to moving elements */
+.item-move,
 .item-enter-active,
 .item-leave-active {
 	transition: all 0.3s ease;
@@ -389,7 +390,19 @@ const placeOrder = () => {
 	margin-top: auto;
 }
 
+@media (max-width: 1300px) {
+	.cart-item {
+	}
+}
+
 @media (max-width: 1130px) {
+	.cart-item {
+		height: 190px;
+		width: 100%;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
 	.price-list {
 		display: none !important;
 	}
@@ -402,9 +415,66 @@ const placeOrder = () => {
 		display: none !important;
 	}
 
+	.quantity-list {
+		transform: translate(-240px, 50px);
+		width: 200px;
+
+		span {
+			display: none;
+		}
+	}
+
+	.btn_add {
+		transform: translateX(100px);
+	}
+
 	.title-list div {
-		width: 220px !important;
+		width: 310px !important;
 		height: 70px !important;
+		font-size: 18px;
+		margin-bottom: 95px;
+		margin-top: 25px;
+	}
+
+	.title-list img {
+		width: 90px !important;
+		height: 135px !important;
+		margin-right: 25px !important;
+	}
+
+	.total {
+		width: 100%;
+		max-width: 700px;
+		margin: 0 auto;
+		margin-top: 20px;
+		padding-right: 120px;
+		padding-left: 60px;
+	}
+
+	.total-price-list {
+		width: 160px;
+		height: 50px;
+		font-size: 18px;
+	}
+
+	.for_payment {
+		width: 280px;
+		height: 50px;
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.pay {
+		width: 160px;
+		height: 50px;
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.order button {
+		width: 340px;
+		height: 50px;
+		font-size: 24px;
 	}
 }
 </style>
