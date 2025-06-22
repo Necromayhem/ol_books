@@ -112,6 +112,7 @@ const placeOrder = () => {
 
 .page-wrapper {
 	min-height: 100vh;
+	max-height: 1680px;
 	display: flex;
 	flex-direction: column;
 	width: 1440px;
@@ -390,17 +391,17 @@ const placeOrder = () => {
 	margin-top: auto;
 }
 
-@media (max-width: 1300px) {
-	.cart-item {
-	}
-}
-
 @media (max-width: 1130px) {
+	.page-wrapper {
+		max-height: 1240px;
+	}
+
 	.cart-item {
 		height: 190px;
 		width: 100%;
 		max-width: 700px;
 		margin: 0 auto;
+		margin-top: 20px;
 	}
 
 	.price-list {
@@ -451,12 +452,6 @@ const placeOrder = () => {
 		padding-left: 60px;
 	}
 
-	.total-price-list {
-		width: 160px;
-		height: 50px;
-		font-size: 18px;
-	}
-
 	.for_payment {
 		width: 280px;
 		height: 50px;
@@ -475,6 +470,130 @@ const placeOrder = () => {
 		width: 340px;
 		height: 50px;
 		font-size: 24px;
+	}
+
+	.item {
+		width: 400px;
+		height: 50px !important;
+		font-size: 18px;
+		transform: translateX(10px);
+	}
+
+	.total-price {
+		width: 160px;
+		height: 50px !important;
+		font-size: 18px;
+		transform: translateX(45px);
+	}
+
+	.total-price-list {
+		width: 160px;
+		height: 50px;
+		font-size: 18px !important;
+		margin-top: 70px;
+		transform: translateX(-30px);
+	}
+
+	.info {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		max-width: 700px;
+	}
+
+	.title {
+		width: 460px;
+		height: 50px;
+
+		h2 {
+			font-size: 48px;
+		}
+	}
+
+	.remove-list img {
+		width: 32px !important;
+		height: 32px !important;
+		min-width: 32px;
+		flex-shrink: 0;
+	}
+}
+
+@media (max-width: 768px) {
+	.page-wrapper {
+		max-height: 1680px;
+	}
+}
+
+@media (max-width: 700px) {
+	.page-wrapper {
+		max-height: 1680px;
+	}
+
+	.title {
+		width: 290px;
+		height: 50px;
+		h2 {
+			font-size: 48px;
+		}
+	}
+
+	.title-list {
+		flex-wrap: wrap;
+		margin-top: 33px;
+	}
+
+	.title-list img {
+		width: 90px;
+		height: 135px;
+		justify-content: center;
+		margin-right: 0 !important;
+	}
+
+	.title-list div {
+		min-width: 240px !important;
+		min-height: 80px !important;
+		font-size: 18px !important;
+		margin: 12px auto 0 12px !important;
+		display: flex !important;
+		flex-direction: column;
+		align-items: center !important;
+		justify-content: flex-start !important;
+		text-align: center !important;
+	}
+
+	.cart-item {
+		flex-direction: column;
+		width: 290px;
+		height: 410px;
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.quantity-list {
+		transform: none;
+
+		span {
+			display: inline-block;
+		}
+	}
+
+	.btn_add {
+		transform: none;
+	}
+
+	.item {
+		transform: none;
+	}
+
+	.total-price {
+		transform: none;
+	}
+
+	.total-price-list {
+		transform: none;
+	}
+
+	.info {
+		display: none;
 	}
 }
 </style>
