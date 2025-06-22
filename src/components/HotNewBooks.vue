@@ -12,7 +12,7 @@ const carousel = ref(null)
 const isTransitioning = ref(false)
 
 const checkMobile = () => {
-	isMobile.value = window.innerWidth < 1370
+	isMobile.value = document.documentElement.clientWidth < 1370
 }
 
 onMounted(() => {
@@ -54,7 +54,7 @@ const prevSlide = () => {
 
 const carouselTransform = computed(() => {
 	if (isMobile.value) {
-		const bookWidth = window.innerWidth < 450 ? 290 : 340
+		const bookWidth = document.documentElement.clientWidth < 450 ? 290 : 340
 		return `translateX(-${currentSlide.value * bookWidth}px)`
 	}
 	return `translateX(-${currentSlide.value * (420 * 3 + 20 * 2)}px)`
