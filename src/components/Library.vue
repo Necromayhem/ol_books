@@ -21,7 +21,7 @@ const calculateBooksPerPage = width => {
 
 // функция обновления
 const updateBooksPerPage = () => {
-	const viewportWidth = window.innerWidth
+	const viewportWidth = document.documentElement.clientWidth
 	console.log('[Resize] Текущая ширина viewport:', viewportWidth, 'px')
 
 	const newValue = calculateBooksPerPage(viewportWidth)
@@ -42,8 +42,7 @@ const debouncedUpdate = debounce(updateBooksPerPage, 150, {
 
 // Принудительное обновление при первом рендере
 const forceUpdate = () => {
-	debouncedUpdate()
-	debouncedUpdate.flush() // Немедленное выполнение
+	updateBooksPerPage()
 }
 
 onMounted(() => {
@@ -76,7 +75,6 @@ const filterBooks = genre => {
 		filteredBooks.value.length
 	)
 }
-
 // Пагинация
 const paginatedBooks = computed(() => {
 	const start = (currentPage.value - 1) * booksPerPage.value

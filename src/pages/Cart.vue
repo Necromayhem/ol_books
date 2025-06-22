@@ -388,4 +388,23 @@ const placeOrder = () => {
 .footer {
 	margin-top: auto;
 }
+
+@media (max-width: 1130px) {
+	.price-list {
+		display: none !important;
+	}
+
+	.price {
+		display: none !important;
+	}
+
+	.quantity {
+		display: none !important;
+	}
+
+	.title-list div {
+		width: 220px !important;
+		height: 70px !important;
+	}
+}
 </style>

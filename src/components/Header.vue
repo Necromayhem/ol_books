@@ -8,6 +8,9 @@ const props = defineProps({
 	bgHeight: {
 		type: [String, Number],
 	},
+	bgSize: {
+		type: String,
+	},
 })
 </script>
 
