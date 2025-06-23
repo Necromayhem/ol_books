@@ -129,4 +129,26 @@ const handleNavigation = path => {
 	transform: translateY(-20px);
 	opacity: 0;
 }
+
+@media (max-width: 768px) {
+	.dropdown {
+		max-width: 340px;
+		height: 330px;
+	}
+
+	.dropdown-content {
+		font-size: 22px;
+	}
+}
+
+@media (max-width: 630px) {
+	.dropdown {
+		max-width: 320px;
+		height: 330px;
+	}
+
+	.dropdown-content {
+		font-size: 22px;
+	}
+}
 </style>
