@@ -2,7 +2,6 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { books } from '../data/NewBooksData'
 import BookCard from './BookCard.vue'
-import { debounce } from 'lodash'
 
 const currentSlide = ref(0)
 const isMobile = ref(false)
@@ -16,23 +15,13 @@ const checkMobile = () => {
 	isMobile.value = document.documentElement.clientWidth < 1370
 }
 
-const debouncedCheckMobile = debounce(checkMobile, 150, {
-	leading: true,
-	trailing: true,
-})
-
-const forceCheck = () => {
-	checkMobile()
-}
-
 onMounted(() => {
-	forceCheck()
-	window.addEventListener('resize', debouncedCheckMobile)
+	checkMobile()
+	window.addEventListener('resize', checkMobile)
 })
 
 onUnmounted(() => {
-	window.removeEventListener('resize', debouncedCheckMobile)
-	debouncedCheckMobile.cancel()
+	window.removeEventListener('resize', checkMobile)
 })
 
 const goToSlide = index => {
@@ -68,7 +57,7 @@ const carouselTransform = computed(() => {
 		const bookWidth = document.documentElement.clientWidth < 450 ? 290 : 340
 		return `translateX(-${currentSlide.value * bookWidth}px)`
 	}
-	return `translateX(-${currentSlide.value * (420 * 3 + 20 * 2)}px)`
+	return `translateX(-${currentSlide.value * (420 * 3 + 20 * 3)}px)`
 })
 </script>
 
@@ -156,7 +145,7 @@ const carouselTransform = computed(() => {
 
 .carousel-wrapper {
 	position: relative;
-	width: calc(420px * 3 + 20px * 2);
+	width: calc(420px * 3 + 20px * 3);
 	overflow: hidden;
 	margin: 0 auto;
 }
