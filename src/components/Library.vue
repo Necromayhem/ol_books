@@ -164,6 +164,44 @@ watch(booksPerPage, (newVal, oldVal) => {
 	max-width: 310px;
 	height: 65px;
 	cursor: pointer;
+	position: relative;
+	background: none;
+	border: none;
+	transition: all 0.3s ease;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -5px;
+		width: 0;
+		height: 2px;
+		background-color: black;
+		transition:
+			width 0.3s ease,
+			background-color 0.3s ease;
+	}
+
+	&:hover::after {
+		width: 100%;
+	}
+
+	&:active {
+		color: #1596c1;
+	}
+
+	&:active::after {
+		width: 100%;
+		background-color: #1596c1;
+	}
+
+	&.active:not(:first-child)::after {
+		width: 100%;
+	}
+
+	&:first-child.active::after {
+		width: 0;
+	}
 }
 
 .books-container {
