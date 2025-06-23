@@ -529,10 +529,13 @@ const placeOrder = () => {
 	}
 
 	.title {
-		width: 290px;
-		height: 50px;
+		margin-top: 90px;
+		margin-bottom: 40px;
+		width: 100%;
+		max-width: 290px !important;
+		height: 50px !important;
 		h2 {
-			font-size: 48px;
+			font-size: 48px !important;
 		}
 	}
 
@@ -564,16 +567,37 @@ const placeOrder = () => {
 		flex-direction: column;
 		width: 290px;
 		height: 410px;
+		margin-top: 10px;
 		padding-right: 0;
 		padding-left: 0;
 	}
 
 	.quantity-list {
+		margin: 0 auto;
+		margin-left: 55px;
 		transform: none;
+		font-size: 18px !important;
 
 		span {
 			display: inline-block;
 		}
+	}
+
+	.total-price-list {
+		margin: 0 auto;
+
+		div {
+			margin: 0 auto !important;
+			margin-top: 10px !important;
+			font-size: 18px !important;
+			transform: translateX(10px);
+			width: 140px !important;
+			height: 50px !important;
+		}
+	}
+
+	.remove-list img {
+		transform: translate(240px, -350px);
 	}
 
 	.btn_add {
@@ -594,6 +618,43 @@ const placeOrder = () => {
 
 	.info {
 		display: none;
+	}
+
+	.total {
+		flex-direction: column;
+		margin: 0 auto;
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.for_payment {
+		margin: 0 auto;
+		margin-top: 10px;
+		width: 290px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.pay {
+		margin: 0 auto;
+		width: 190px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.order {
+		margin-bottom: 40px;
+	}
+
+	.order button {
+		width: 100%;
+		max-width: 290px;
 	}
 }
 </style>

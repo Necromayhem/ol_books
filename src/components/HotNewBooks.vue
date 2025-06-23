@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { books } from '../data/NewBooksData'
 import BookCard from './BookCard.vue'
+import { debounce } from 'lodash'
 
 const currentSlide = ref(0)
 const isMobile = ref(false)
@@ -15,13 +16,23 @@ const checkMobile = () => {
 	isMobile.value = document.documentElement.clientWidth < 1370
 }
 
-onMounted(() => {
+const debouncedCheckMobile = debounce(checkMobile, 150, {
+	leading: true,
+	trailing: true,
+})
+
+const forceCheck = () => {
 	checkMobile()
-	window.addEventListener('resize', checkMobile)
+}
+
+onMounted(() => {
+	forceCheck()
+	window.addEventListener('resize', debouncedCheckMobile)
 })
 
 onUnmounted(() => {
-	window.removeEventListener('resize', checkMobile)
+	window.removeEventListener('resize', debouncedCheckMobile)
+	debouncedCheckMobile.cancel()
 })
 
 const goToSlide = index => {

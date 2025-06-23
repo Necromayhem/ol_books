@@ -5,13 +5,11 @@ import { all_books } from '../data/AllBooksData'
 import { debounce } from 'lodash'
 
 const genres = ['Категория', 'Классика', 'Приключения', 'Сказки']
-
 const selectedGenre = ref('Категория')
 const filteredBooks = ref(all_books)
 const currentPage = ref(1)
 const booksPerPage = ref(9)
 
-// Функция для определения количества книг на странице
 const calculateBooksPerPage = width => {
 	if (width <= 600) return 3
 	if (width <= 767) return 3
@@ -19,48 +17,31 @@ const calculateBooksPerPage = width => {
 	return 9
 }
 
-// функция обновления
 const updateBooksPerPage = () => {
 	const viewportWidth = document.documentElement.clientWidth
-	console.log('[Resize] Текущая ширина viewport:', viewportWidth, 'px')
-
 	const newValue = calculateBooksPerPage(viewportWidth)
-
-	if (booksPerPage.value !== newValue) {
-		booksPerPage.value = newValue
-		console.log('[Resize] Обновлено booksPerPage:', newValue)
-	} else {
-		console.log('[Resize] Ширина изменилась, но booksPerPage остаётся тем же')
-	}
+	booksPerPage.value = newValue
 }
 
-// Дебаунс с возможностью принудительного обновления
 const debouncedUpdate = debounce(updateBooksPerPage, 150, {
 	leading: true,
 	trailing: true,
 })
 
-// Принудительное обновление при первом рендере
 const forceUpdate = () => {
 	updateBooksPerPage()
 }
 
 onMounted(() => {
-	console.log('Компонент смонтирован. Инициализация...')
 	forceUpdate()
 	window.addEventListener('resize', debouncedUpdate)
-
-	// Дополнительная проверка через 500мс на случай асинхронных изменений
-	setTimeout(forceUpdate, 500)
 })
 
 onBeforeUnmount(() => {
-	console.log('Компонент демонтируется. Очистка...')
 	window.removeEventListener('resize', debouncedUpdate)
 	debouncedUpdate.cancel()
 })
 
-// Логика фильтрации книг
 const filterBooks = genre => {
 	selectedGenre.value = genre
 	filteredBooks.value =
@@ -68,14 +49,8 @@ const filterBooks = genre => {
 			? all_books
 			: all_books.filter(book => book.genre === genre)
 	currentPage.value = 1
-	console.log(
-		'Применён фильтр:',
-		genre,
-		'Найдено книг:',
-		filteredBooks.value.length
-	)
 }
-// Пагинация
+
 const paginatedBooks = computed(() => {
 	const start = (currentPage.value - 1) * booksPerPage.value
 	const end = start + booksPerPage.value
@@ -91,10 +66,8 @@ const nextPage = () =>
 	currentPage.value < totalPages.value && currentPage.value++
 
 watch(booksPerPage, (newVal, oldVal) => {
-	console.log('Изменение booksPerPage:', oldVal, '→', newVal)
 	if (currentPage.value > Math.ceil(filteredBooks.value.length / newVal)) {
 		currentPage.value = 1
-		console.log('Сброс текущей страницы на 1 из-за изменения booksPerPage')
 	}
 })
 </script>
